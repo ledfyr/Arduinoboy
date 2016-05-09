@@ -1,3 +1,7 @@
+# MIDI out channel switch on-the-fly
+This is a modified version of the Arduinoboy software. MIDI out channels can now be changed from within LSDJ in MIDI out mode. The command X6y changes the MIDI out channel setting in PU1/PU2/WAV/NOI (y=0-F => MIDI out ch 1-16).
+Channels are changed immediately which means that all 16 MIDI channels can now be used in the same song (though only 4 at the exact same time).
+
 ![ScreenShot](http://trash80.net/arduinoboy/aboy1_2_0.jpg)
 
 # Arduinoboy

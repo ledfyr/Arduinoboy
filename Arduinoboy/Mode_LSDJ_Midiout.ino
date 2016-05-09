@@ -26,7 +26,7 @@ void modeLSDJMidioutSetup()
 
 void modeLSDJMidiout()
 {
-  while(1){
+  while(1) {
      if(getIncommingSlaveByte()) {
         if(incomingMidiByte > 0x6f) {
           switch(incomingMidiByte)
@@ -119,16 +119,15 @@ void playCC(byte m, byte n)
 {
   byte v = n;
   byte c = n;
-  
+
   if(memory[MEM_MIDIOUT_CC_MODE+m]) {
     if(memory[MEM_MIDIOUT_CC_SCALING+m]) {
       v = (v & 0x0F)*8;
       //if(v) v --;
     }
     n=(m*7)+((n>>4) & 0x07);
-    //change MIDI out ch on the fly with command X6y (y=0-F => MIDI out ch 1-16)
-    if (n == 6) { //use another X[first digit] by changing the 6 (0-6 is allowed)
-      c = (c & 0xF);
+    if (n == 6) { // MIDI out ch switch on-the-fly, 0-6 can be used for X[first digit]
+      c = c & 0x0F;
       memory[MEM_MIDIOUT_NOTE_CH+m] = c;
       memory[MEM_MIDIOUT_CC_CH+m] = c;
       return;
